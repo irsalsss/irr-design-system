@@ -4,3 +4,4 @@ storybook-static
 coverage
 .env
 .env.local
+.DS_Store
