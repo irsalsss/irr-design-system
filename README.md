@@ -12,13 +12,13 @@ Earthy, professional component library. **Stripe meets Linear** — confident ge
 | Layer | Tool |
 |---|---|
 | Framework | React 18 + TypeScript (strict) |
-| Build | Vite 5 |
+| Build | Vite 5 (lib) + Storybook v8 |
 | Styling | Tailwind CSS v3 + CSS custom properties |
 | Storybook | v8 with Vite builder |
 | Unit tests | Vitest 2 + Testing Library |
 | Visual tests | Chromatic |
 | Lint | ESLint 9 (flat config) + typescript-eslint |
-| Icons | Lucide React |
+| Icons | Radix Icons |
 | Fonts | `geist` npm package |
 
 ---
@@ -38,12 +38,18 @@ irr-design-system/
 │   ├── test/
 │   │   └── setup.ts     # jest-dom matchers
 │   ├── components/
-│   │   └── Button/      # canonical first component
-│   │       ├── Button.tsx
-│   │       ├── Button.stories.tsx
-│   │       └── Button.test.tsx
+│   │   ├── Button/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Button.stories.tsx
+│   │   │   └── Button.test.tsx
+│   │   └── ButtonIcon/
+│   │       ├── ButtonIcon.tsx
+│   │       ├── ButtonIcon.stories.tsx
+│   │       └── ButtonIcon.test.tsx
 │   └── index.ts         # public barrel export
+├── tailwind.preset.js   # Tailwind preset for downstream consumers
 ├── tailwind.config.ts   # full IRR token mapping
+├── tsconfig.lib.json    # lib build tsconfig
 ├── vitest.config.ts
 ├── eslint.config.js
 └── vite.config.ts
@@ -62,6 +68,9 @@ pnpm dev        # → http://localhost:6006
 
 # Build Storybook static
 pnpm build
+
+# Build library (dist/)
+pnpm build:lib
 ```
 
 ---
@@ -135,17 +144,27 @@ Use semantic color tokens (`bg-brand`, `text-fg-muted`, `border-border`) over ra
 
 ---
 
-## Downstream consumption (git submodule)
+## Downstream consumption (npm package)
 
-Downstream repos pull this as a submodule at `src/design-system/`, then extend their `tailwind.config.js`:
+Published as `@irr/design-system`. Install and extend your Tailwind config:
+
+```bash
+pnpm add @irr/design-system
+```
 
 ```js
-// downstream tailwind.config.js
+// tailwind.config.js
 module.exports = {
   content: [
     './src/**/*.{ts,tsx}',
-    './src/design-system/src/**/*.{ts,tsx}',  // include submodule
+    './node_modules/@irr/design-system/src/**/*.{ts,tsx}',
   ],
-  presets: [require('./src/design-system/tailwind.config.ts')],
+  presets: [require('@irr/design-system/tailwind')],
 }
+```
+
+Import global CSS in your app entry:
+
+```ts
+import '@irr/design-system/src/styles/globals.css'
 ```

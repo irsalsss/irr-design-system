@@ -1,3 +1,4 @@
+import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { forwardRef } from 'react'
 import { cn } from '../../lib/cn'
@@ -41,6 +42,8 @@ const iconSizeClasses = {
 export interface ButtonIconProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonIconVariants> {
+  /** Render as child element (polymorphic via Radix Slot) */
+  asChild?: boolean
   /** Show a loading spinner instead of the icon */
   loading?: boolean
   /**
@@ -57,6 +60,7 @@ export interface ButtonIconProps
 export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>(
   (
     {
+      asChild = false,
       variant,
       size,
       loading = false,
@@ -69,9 +73,10 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>(
     ref,
   ) => {
     const iconSize = size ?? 'md'
+    const Comp = asChild ? Slot : 'button'
 
     return (
-      <button
+      <Comp
         ref={ref}
         aria-label={label}
         disabled={disabled || loading}
@@ -88,7 +93,7 @@ export const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>(
             {icon}
           </span>
         )}
-      </button>
+      </Comp>
     )
   },
 )
