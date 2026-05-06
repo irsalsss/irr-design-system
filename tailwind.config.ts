@@ -1,0 +1,83 @@
+import type { Config } from 'tailwindcss'
+
+export default {
+  darkMode: 'class',
+  content: ['./src/**/*.{ts,tsx}', './.storybook/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        teal: {
+          50: '#ecfdf6', 100: '#d1fae8', 200: '#a7f3d2', 300: '#6ee7b8',
+          400: '#34d39a', 500: '#14b87f', 600: '#0f6e56', 700: '#0c5945',
+          800: '#0a4838', 900: '#083a2e', 950: '#042419',
+        },
+        stone: {
+          50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4', 300: '#d6d3d1',
+          400: '#a8a29e', 500: '#78716c', 600: '#57534e', 700: '#44403c',
+          800: '#292524', 900: '#1c1917', 950: '#0c0a09',
+        },
+        amber: {
+          50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+          400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+          800: '#92400e', 900: '#78350f', 950: '#451a03',
+        },
+        // Semantic tokens — resolved from CSS vars
+        bg: 'var(--bg)',
+        'bg-elevated': 'var(--bg-elevated)',
+        'bg-subtle': 'var(--bg-subtle)',
+        'bg-muted': 'var(--bg-muted)',
+        fg: 'var(--fg)',
+        'fg-muted': 'var(--fg-muted)',
+        'fg-subtle': 'var(--fg-subtle)',
+        border: 'var(--border)',
+        'border-strong': 'var(--border-strong)',
+        brand: 'var(--brand)',
+        'brand-hover': 'var(--brand-hover)',
+        'brand-subtle': 'var(--brand-subtle)',
+        accent: 'var(--accent)',
+        'accent-hover': 'var(--accent-hover)',
+        'accent-subtle': 'var(--accent-subtle)',
+      },
+      fontFamily: {
+        sans: ['Geist', 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['Geist Mono', 'ui-monospace', 'SF Mono', 'Menlo', 'monospace'],
+      },
+      fontSize: {
+        'display-2xl': ['4.5rem',   { lineHeight: '1.1',  letterSpacing: '-0.02em',  fontWeight: '600' }],
+        'display-xl':  ['3.75rem',  { lineHeight: '1.1',  letterSpacing: '-0.02em',  fontWeight: '600' }],
+        'display-lg':  ['3rem',     { lineHeight: '1.15', letterSpacing: '-0.02em',  fontWeight: '600' }],
+        'display-md':  ['2.25rem',  { lineHeight: '1.2',  letterSpacing: '-0.015em', fontWeight: '600' }],
+        'display-sm':  ['1.875rem', { lineHeight: '1.25', letterSpacing: '-0.01em',  fontWeight: '600' }],
+        xl: ['1.25rem',  { lineHeight: '1.5'  }],
+        lg: ['1.125rem', { lineHeight: '1.55' }],
+        md: ['1rem',     { lineHeight: '1.5'  }],
+        sm: ['0.875rem', { lineHeight: '1.5'  }],
+        xs: ['0.75rem',  { lineHeight: '1.4'  }],
+      },
+      borderRadius: {
+        sm:   '4px',
+        md:   '8px',
+        lg:   '12px',
+        xl:   '16px',
+        full: '9999px',
+      },
+      boxShadow: {
+        xs: '0 1px 2px rgba(28,25,23,0.04)',
+        sm: '0 1px 3px rgba(28,25,23,0.06), 0 1px 2px rgba(28,25,23,0.04)',
+        md: '0 4px 8px -2px rgba(28,25,23,0.06), 0 2px 4px -2px rgba(28,25,23,0.04)',
+        lg: '0 12px 24px -8px rgba(28,25,23,0.10), 0 4px 8px -4px rgba(28,25,23,0.05)',
+        xl: '0 24px 48px -12px rgba(28,25,23,0.16)',
+      },
+      transitionTimingFunction: {
+        out:    'cubic-bezier(0.16, 1, 0.3, 1)',
+        'in-out': 'cubic-bezier(0.65, 0, 0.35, 1)',
+      },
+      transitionDuration: {
+        fast: '120ms',
+        base: '180ms',
+        slow: '280ms',
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config
