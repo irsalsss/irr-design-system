@@ -1,7 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { axe, toHaveNoViolations } from 'jest-axe'
 import { describe, expect, it, vi } from 'vitest'
 import { ButtonIcon } from './ButtonIcon'
+
+expect.extend(toHaveNoViolations)
 
 const icon = <svg data-testid="icon" />
 
@@ -39,5 +42,67 @@ describe('ButtonIcon', () => {
   it('renders icon when not loading', () => {
     render(<ButtonIcon label="Add item" icon={icon} />)
     expect(screen.getByTestId('icon')).toBeInTheDocument()
+  })
+
+  // ── A11y ──────────────────────────────────────────────────────────────────
+
+  it('has no axe violations — default', async () => {
+    const { container } = render(<ButtonIcon label="Close dialog" icon={icon} />)
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('has no axe violations — disabled', async () => {
+    const { container } = render(<ButtonIcon label="Close dialog" icon={icon} disabled />)
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('has no axe violations — loading', async () => {
+    const { container } = render(<ButtonIcon label="Close dialog" loading />)
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('has no axe violations — danger variant', async () => {
+    const { container } = render(<ButtonIcon label="Delete item" icon={icon} variant="danger" />)
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('icon is hidden from screen readers', () => {
+    render(<ButtonIcon label="Add item" icon={icon} />)
+    const wrapper = screen.getByRole('button').querySelector('[aria-hidden]')
+    expect(wrapper).toBeTruthy()
+  })
+
+  it('is keyboard accessible — activates on Enter', async () => {
+    const user = userEvent.setup()
+    const onClick = vi.fn()
+    render(<ButtonIcon label="Add item" icon={icon} onClick={onClick} />)
+    screen.getByRole('button').focus()
+    await user.keyboard('{Enter}')
+    expect(onClick).toHaveBeenCalledOnce()
+  })
+
+  it('is keyboard accessible — activates on Space', async () => {
+    const user = userEvent.setup()
+    const onClick = vi.fn()
+    render(<ButtonIcon label="Add item" icon={icon} onClick={onClick} />)
+    screen.getByRole('button').focus()
+    await user.keyboard(' ')
+    expect(onClick).toHaveBeenCalledOnce()
+  })
+
+  it('does not fire onClick when disabled', async () => {
+    const user = userEvent.setup()
+    const onClick = vi.fn()
+    render(<ButtonIcon label="Add item" icon={icon} disabled onClick={onClick} />)
+    await user.click(screen.getByRole('button'))
+    expect(onClick).not.toHaveBeenCalled()
+  })
+
+  it('does not fire onClick when loading', async () => {
+    const user = userEvent.setup()
+    const onClick = vi.fn()
+    render(<ButtonIcon label="Add item" loading onClick={onClick} />)
+    await user.click(screen.getByRole('button'))
+    expect(onClick).not.toHaveBeenCalled()
   })
 })

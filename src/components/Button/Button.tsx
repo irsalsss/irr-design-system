@@ -36,11 +36,13 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   loading?: boolean
+  /** Screen-reader announcement when loading=true. Defaults to "Loading". */
+  loadingLabel?: string
   asChild?: boolean
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, loading = false, disabled, asChild = false, className, children, ...props }, ref) => {
+  ({ variant, size, loading = false, loadingLabel = 'Loading', disabled, asChild = false, className, children, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
     return (
       <Comp
@@ -52,10 +54,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading ? (
-          <span
-            className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
-            aria-hidden="true"
-          />
+          <>
+            <span
+              className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+              aria-hidden="true"
+            />
+            <span className="sr-only">{loadingLabel}</span>
+          </>
         ) : null}
         {children}
       </Comp>
