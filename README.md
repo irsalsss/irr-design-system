@@ -1,5 +1,7 @@
 # IRR Design System
 
+**Current version: `v1.0.1`** — install: `github:irsalsss/irr-design-system#v1.0.1`
+
 Earthy, professional component library. **Stripe meets Linear** — confident geometry, restrained color, quiet warmth from stone neutrals.
 
 **Brand:** Teal `#0F6E56` · Stone neutrals · Amber accent `#F59E0B`  
