@@ -54,6 +54,7 @@ export const Palette: Story = {
   render: () => (
     <div className="flex flex-col gap-8 p-4">
       <SwatchRow label="Teal" palette={colors.teal} />
+      <SwatchRow label="Slate" palette={colors.slate} />
       <SwatchRow label="Stone" palette={colors.stone} />
       <SwatchRow label="Amber" palette={colors.amber} />
     </div>
