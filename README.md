@@ -1,6 +1,6 @@
 # IRR Design System
 
-**Current version: `v1.1.1`** — install: `github:irsalsss/irr-design-system#v1.1.1`
+**Current version: `v1.1.2`** — install: `github:irsalsss/irr-design-system#v1.1.2`
 
 Earthy, professional component library. **Stripe meets Linear** — confident geometry, restrained color, quiet warmth from stone neutrals.
 
