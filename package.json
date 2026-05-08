@@ -12,7 +12,8 @@
       "types": "./dist/types/index.d.ts"
     },
     "./tailwind": "./tailwind.preset.js",
-    "./styles/globals.css": "./dist/globals.css"
+    "./styles/globals.css": "./dist/globals.css",
+    "./styles/tokens.css": "./dist/tokens.css"
   },
   "files": [
     "dist",
@@ -22,7 +23,7 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "build-storybook": "storybook build",
-    "build:lib": "vite build && tsc -p tsconfig.lib.json && postcss src/styles/globals.css -o dist/globals.css",
+    "build:lib": "vite build && tsc -p tsconfig.lib.json && postcss src/styles/globals.css -o dist/globals.css && cp src/styles/tokens.css dist/tokens.css",
     "prepare": "pnpm run build:lib",
     "test": "vitest run",
     "test:watch": "vitest",

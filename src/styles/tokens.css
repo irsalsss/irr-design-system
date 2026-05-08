@@ -1,0 +1,133 @@
+/* ── IRR Design System — CSS tokens only (no Tailwind utilities) ── */
+/* Import this in consumer apps instead of globals.css              */
+
+/* ── Brand palette ────────────────────────────────────────────── */
+:root {
+  --teal-50:  #ecfdf6; --teal-100: #d1fae8; --teal-200: #a7f3d2;
+  --teal-300: #6ee7b8; --teal-400: #34d39a; --teal-500: #14b87f;
+  --teal-600: #0f6e56; --teal-700: #0c5945; --teal-800: #0a4838;
+  --teal-900: #083a2e; --teal-950: #042419;
+
+  --stone-50:  #fafaf9; --stone-100: #f5f5f4; --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1; --stone-400: #a8a29e; --stone-500: #78716c;
+  --stone-600: #57534e; --stone-700: #44403c; --stone-800: #292524;
+  --stone-900: #1c1917; --stone-950: #0c0a09;
+
+  --amber-50:  #fffbeb; --amber-100: #fef3c7; --amber-200: #fde68a;
+  --amber-300: #fcd34d; --amber-400: #fbbf24; --amber-500: #f59e0b;
+  --amber-600: #d97706; --amber-700: #b45309; --amber-800: #92400e;
+  --amber-900: #78350f; --amber-950: #451a03;
+
+  --slate-50:  #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1; --slate-400: #94a3b8; --slate-500: #64748b;
+  --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b;
+  --slate-900: #0f172a; --slate-950: #020617;
+
+  /* ── Semantic — light ─────────────────────────────────────── */
+  --bg:           #f0f4f1;
+  --bg-elevated:  #ffffff;
+  --bg-subtle:    #e6ece8;
+  --bg-muted:     #d8e0db;
+
+  --fg:           #0f1411;
+  --fg-muted:     var(--stone-600);
+  --fg-subtle:    var(--stone-500);
+  --fg-on-brand:  #ffffff;
+
+  --border:        #d8e0db;
+  --border-strong: #c2cdc6;
+  --ring: color-mix(in oklab, var(--teal-600) 35%, transparent);
+
+  --brand:        var(--teal-600);
+  --brand-hover:  var(--teal-700);
+  --brand-active: var(--teal-800);
+  --brand-subtle: var(--teal-50);
+  --brand-fg:     #ffffff;
+
+  --accent:        var(--amber-500);
+  --accent-hover:  var(--amber-600);
+  --accent-subtle: var(--amber-50);
+
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger:  #b91c1c;
+  --color-info:    #0369a1;
+
+  /* ── Spacing (4pt base) ───────────────────────────────────── */
+  --space-1: 4px; --space-2: 8px;  --space-3: 12px;
+  --space-4: 16px; --space-5: 20px; --space-6: 24px;
+  --space-8: 32px; --space-10: 40px; --space-12: 48px;
+  --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-ring: 0 0 0 4px var(--ring);
+  --shadow-xs: 0 1px 2px rgba(28,25,23,0.04);
+  --shadow-sm: 0 1px 3px rgba(28,25,23,0.06), 0 1px 2px rgba(28,25,23,0.04);
+  --shadow-md: 0 4px 8px -2px rgba(28,25,23,0.06), 0 2px 4px -2px rgba(28,25,23,0.04);
+  --shadow-lg: 0 12px 24px -8px rgba(28,25,23,0.10), 0 4px 8px -4px rgba(28,25,23,0.05);
+  --shadow-xl: 0 24px 48px -12px rgba(28,25,23,0.16);
+
+  /* ── Motion ───────────────────────────────────────────────── */
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 280ms;
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* ── Dark theme ───────────────────────────────────────────────── */
+.dark,
+[data-theme='dark'] {
+  --bg:          #0f1411;
+  --bg-elevated: #161d19;
+  --bg-subtle:   #1b2520;
+  --bg-muted:    #243029;
+
+  --fg:          #e8f0eb;
+  --fg-muted:    #a8b5ad;
+  --fg-subtle:   #7c8a82;
+  --fg-on-brand: #0f1411;
+
+  --border:        #243029;
+  --border-strong: #2f3d34;
+  --ring: color-mix(in oklab, #5dcaa5 40%, transparent);
+
+  --brand:        #5dcaa5;
+  --brand-hover:  #7ddcb8;
+  --brand-active: #9fe1cb;
+  --brand-subtle: color-mix(in oklab, #5dcaa5 14%, #0f1411);
+  --brand-fg:     #0f1411;
+
+  --accent:        var(--amber-400);
+  --accent-hover:  var(--amber-300);
+  --accent-subtle: color-mix(in oklab, var(--amber-400) 14%, var(--stone-950));
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.40);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.50), 0 1px 2px rgba(0,0,0,0.40);
+  --shadow-md: 0 4px 8px -2px rgba(0,0,0,0.50), 0 2px 4px -2px rgba(0,0,0,0.40);
+  --shadow-lg: 0 12px 24px -8px rgba(0,0,0,0.55), 0 4px 8px -4px rgba(0,0,0,0.45);
+  --shadow-xl: 0 24px 48px -12px rgba(0,0,0,0.70);
+}
+
+/* ── Element defaults ─────────────────────────────────────────── */
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
